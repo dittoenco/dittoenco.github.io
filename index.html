@@ -1759,6 +1759,7 @@
   const rollers = Array.from(document.querySelectorAll('.space-roller'));
   const allDecodePromises = [];
   const tickFns = [];
+  const snapFns = []; // 탭 복귀 시 현재 위치로 스냅
 
   rollers.forEach(roller => {
     const track = roller.querySelector('.space-roller-track');
@@ -1778,8 +1779,7 @@
     });
 
     function goTo(n, animate = true) {
-      if (!animate) track.style.transition = 'none';
-      else track.style.transition = '';
+      track.style.transition = animate ? '' : 'none';
       track.style.transform = `translate3d(-${n * roller.offsetWidth}px, 0, 0)`;
       dots.forEach((d, i) => d.classList.toggle('active', i === (n % real)));
       idx = n;
@@ -1793,36 +1793,29 @@
 
     allDecodePromises.push(...imgs.map(img => img.decode().catch(() => {})));
     tickFns.push(() => goTo(idx + 1));
+
+    // 탭 복귀 시: transition 없이 현재 idx로 강제 스냅
+    snapFns.push(() => {
+      const safeIdx = idx % real;
+      track.style.transition = 'none';
+      track.style.transform = `translate3d(-${safeIdx * roller.offsetWidth}px, 0, 0)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === safeIdx));
+      idx = safeIdx;
+      // 강제 리플로우로 transition 초기화 보장
+      void track.offsetWidth;
+    });
   });
 
   // 모든 슬라이더 이미지가 준비되면 동시에 같은 interval로 시작
   Promise.all(allDecodePromises).then(() => {
     let sliderTimer = setInterval(() => tickFns.forEach(fn => fn()), 3500);
 
-    // 탭 전환 시 슬라이더 일시정지 / 재시작
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         clearInterval(sliderTimer);
       } else {
-        // 탭으로 돌아오면 각 슬라이더를 현재 idx로 재렌더링 후 재시작
-        rollers.forEach(roller => {
-          const track = roller.querySelector('.space-roller-track');
-          const imgs  = Array.from(track.querySelectorAll('img'));
-          const real  = roller.querySelectorAll('.dot').length;
-          // 현재 transform에서 idx 읽기
-          const match = track.style.transform.match(/-?([\d.]+)px/);
-          if (match) {
-            const px = parseFloat(match[0]);
-            const w  = roller.offsetWidth || 1;
-            const n  = Math.round(Math.abs(px) / w);
-            // 범위 초과 시 0으로 리셋
-            if (n >= real) {
-              track.style.transition = 'none';
-              track.style.transform = 'translate3d(0, 0, 0)';
-              roller.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === 0));
-            }
-          }
-        });
+        // 현재 위치로 스냅 후 interval 재시작
+        snapFns.forEach(fn => fn());
         sliderTimer = setInterval(() => tickFns.forEach(fn => fn()), 3500);
       }
     });
