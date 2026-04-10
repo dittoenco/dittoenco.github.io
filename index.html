@@ -1797,7 +1797,35 @@
 
   // 모든 슬라이더 이미지가 준비되면 동시에 같은 interval로 시작
   Promise.all(allDecodePromises).then(() => {
-    setInterval(() => tickFns.forEach(fn => fn()), 3500);
+    let sliderTimer = setInterval(() => tickFns.forEach(fn => fn()), 3500);
+
+    // 탭 전환 시 슬라이더 일시정지 / 재시작
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(sliderTimer);
+      } else {
+        // 탭으로 돌아오면 각 슬라이더를 현재 idx로 재렌더링 후 재시작
+        rollers.forEach(roller => {
+          const track = roller.querySelector('.space-roller-track');
+          const imgs  = Array.from(track.querySelectorAll('img'));
+          const real  = roller.querySelectorAll('.dot').length;
+          // 현재 transform에서 idx 읽기
+          const match = track.style.transform.match(/-?([\d.]+)px/);
+          if (match) {
+            const px = parseFloat(match[0]);
+            const w  = roller.offsetWidth || 1;
+            const n  = Math.round(Math.abs(px) / w);
+            // 범위 초과 시 0으로 리셋
+            if (n >= real) {
+              track.style.transition = 'none';
+              track.style.transform = 'translate3d(0, 0, 0)';
+              roller.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === 0));
+            }
+          }
+        });
+        sliderTimer = setInterval(() => tickFns.forEach(fn => fn()), 3500);
+      }
+    });
   });
 
   document.fonts.ready.then(fitHeroSub);
