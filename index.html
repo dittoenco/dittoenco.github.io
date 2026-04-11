@@ -1995,14 +1995,15 @@
     if (!canvas) return;
 
     function applyScale() {
+      const sw = window.screen.width;  // 모니터 실제 크기 (브라우저 줌 영향 없음)
       const vw = window.innerWidth;
-      if (vw >= 1280) {
-        const scale = vw / 1280;
+      if (sw >= 1280) {
+        const scale = sw / 1280;
         canvas.style.width = '1280px';
         canvas.style.margin = '0';
         canvas.style.transformOrigin = 'top left';
         canvas.style.transform = 'scale(' + scale + ')';
-        document.body.style.width = vw + 'px';
+        document.body.style.width = sw + 'px';
         requestAnimationFrame(function() {
           document.body.style.height = (canvas.offsetHeight * scale) + 'px';
         });
