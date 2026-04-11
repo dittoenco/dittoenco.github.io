@@ -269,11 +269,16 @@
   }
   .about-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, auto);
     gap: 0;
+    width: max-content;
+    margin: 0 auto;
   }
   .about-stat {
     padding-right: 40px;
+  }
+  .about-stat:last-child {
+    padding-right: 0;
   }
   .about-stat + .about-stat {
     padding-left: 0;
