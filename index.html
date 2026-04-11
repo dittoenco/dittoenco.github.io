@@ -1872,15 +1872,15 @@
     allDecodePromises.push(...imgs.map(img => img.decode().catch(() => {})));
     tickFns.push(() => goTo(idx + 1));
 
-    // 탭 복귀 시: transition 없이 현재 idx로 강제 스냅
+    // 탭 복귀 시: 이미지 너비 재적용 후 현재 idx로 강제 스냅
     snapFns.push(() => {
       const safeIdx = idx % real;
-      const w = getW();
-      track.style.transition = 'none';
-      track.style.transform = `translate3d(-${safeIdx * w}px, 0, 0)`;
-      dots.forEach((d, i) => d.classList.toggle('active', i === safeIdx));
       idx = safeIdx;
-      void track.offsetWidth;
+      requestAnimationFrame(() => {
+        setWidths();
+        dots.forEach((d, i) => d.classList.toggle('active', i === safeIdx));
+        void track.offsetWidth;
+      });
     });
   });
 
