@@ -315,6 +315,7 @@
     background: #FDFAF4;
     clip-path: inset(80px 0);
     margin: -80px 0;
+    min-height: 600px;
   }
   .cv-left {
     display: flex;
@@ -341,7 +342,7 @@
   }
   .cv-content-wrap {
     position: relative;
-    min-height: 220px;
+    min-height: 320px;
   }
   .cv-content {
     position: absolute;
@@ -394,17 +395,19 @@
     position: relative;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    align-items: stretch;
   }
   .cv-img-wrap {
     position: relative;
     width: 100%;
-    clip-path: inset(120px 0 120px 0);
+    overflow: hidden;
   }
   .cv-full-img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   .cv-panels-overlay {
     position: absolute;
@@ -1098,6 +1101,7 @@
   }
   .space-roller-track img {
     height: 100% !important;
+    min-width: 1px;
     object-fit: cover; object-position: center 20%;
     display: block; flex-shrink: 0;
     will-change: transform;
@@ -1965,19 +1969,33 @@
     const real  = dots.length;
     let idx = 0;
 
+    function getW() { return roller.offsetWidth || roller.getBoundingClientRect().width || 0; }
+
     function setWidths() {
-      imgs.forEach(img => { img.style.width = roller.offsetWidth + 'px'; });
+      const w = getW();
+      if (w > 0) {
+        imgs.forEach(img => { img.style.width = w + 'px'; });
+        track.style.transition = 'none';
+        track.style.transform = `translate3d(-${idx * w}px, 0, 0)`;
+      }
     }
+    // 즉시 실행 후, rAF + load 이벤트로 레이아웃 확정 후 재측정
     setWidths();
+    requestAnimationFrame(() => requestAnimationFrame(setWidths));
+    window.addEventListener('load', setWidths);
     window.addEventListener('resize', () => {
-      setWidths();
-      track.style.transition = 'none';
-      track.style.transform = `translate3d(-${idx * roller.offsetWidth}px, 0, 0)`;
+      const w = getW();
+      if (w > 0) {
+        imgs.forEach(img => { img.style.width = w + 'px'; });
+        track.style.transition = 'none';
+        track.style.transform = `translate3d(-${idx * w}px, 0, 0)`;
+      }
     });
 
     function goTo(n, animate = true) {
+      const w = getW();
       track.style.transition = animate ? '' : 'none';
-      track.style.transform = `translate3d(-${n * roller.offsetWidth}px, 0, 0)`;
+      track.style.transform = `translate3d(-${n * w}px, 0, 0)`;
       dots.forEach((d, i) => d.classList.toggle('active', i === (n % real)));
       idx = n;
     }
@@ -1994,11 +2012,11 @@
     // 탭 복귀 시: transition 없이 현재 idx로 강제 스냅
     snapFns.push(() => {
       const safeIdx = idx % real;
+      const w = getW();
       track.style.transition = 'none';
-      track.style.transform = `translate3d(-${safeIdx * roller.offsetWidth}px, 0, 0)`;
+      track.style.transform = `translate3d(-${safeIdx * w}px, 0, 0)`;
       dots.forEach((d, i) => d.classList.toggle('active', i === safeIdx));
       idx = safeIdx;
-      // 강제 리플로우로 transition 초기화 보장
       void track.offsetWidth;
     });
   });
