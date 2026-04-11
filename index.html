@@ -43,11 +43,18 @@
   .editorial-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
 </style>
 <style>
+  /* ── CSS 변수: 화면 크기에 따라 자동으로 스케일 ── */
+  :root {
+    --px: clamp(20px, 5.5vw, 80px);   /* 가로 패딩: 모바일 20px → 1440px+ 80px */
+    --py: clamp(40px, 5.5vw, 80px);   /* 섹션 세로 패딩 */
+    --nav-py: clamp(14px, 1.8vw, 24px);
+  }
+
   html { scroll-behavior: smooth; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Arial', sans-serif; background: #fff; color: #1a1a1a; }
+  body { font-family: 'Arial', sans-serif; background: #fff; color: #1a1a1a; word-break: keep-all; }
 
-  .container { max-width: 100%; margin: 0 auto; padding: 0 60px; }
+  .container { max-width: 100%; margin: 0 auto; padding: 0 var(--px); }
 
 /* 전체 캔버스 */
   .page-canvas {
@@ -62,7 +69,7 @@
   }
   .nav .container {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 48px 24px 80px;
+    padding: var(--nav-py) var(--px);
     border-bottom: 1px solid rgba(255,255,255,0.15);
   }
   .nav-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: #fff; }
@@ -110,7 +117,7 @@
     position: absolute; inset: 0; z-index: 2;
     display: flex; flex-direction: column;
     justify-content: flex-end;
-    padding: 80px clamp(20px, 4vw, 48px) clamp(48px, 6vh, 80px) 80px;
+    padding: clamp(60px, 8vw, 80px) var(--px) clamp(48px, 6vh, 80px) var(--px);
   }
   .hero-kicker {
     display: flex; align-items: center; justify-content: flex-start;
@@ -177,14 +184,6 @@
   }
   .hero-dot.active { background: #F47B20; transform: scale(1.3); }
 
-  /* 모바일 */
-  @media (max-width: 768px) {
-    .nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 0 20px; height: 60vh; }
-    .hero-h1 { font-size: 28px; }
-    .hero-content { padding: 0 24px 36px; }
-  }
 
   /* 공통 */
   .sec { padding: 80px 0; }
@@ -205,7 +204,7 @@
 
   .about-sec {
     background: url('./images/aboutus.webp') center/cover no-repeat;
-    padding: 56px 80px 48px;
+    padding: var(--py) var(--px) clamp(32px, 4vw, 48px);
     position: relative;
   }
   .about-sec::before {
@@ -296,7 +295,7 @@
   .astat-value { display: flex; align-items: baseline; gap: 8px; }
   .astat-num {
     font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-size: 72px;
+    font-size: clamp(36px, 5vw, 72px);
     font-weight: 300;
     color: #444;
     line-height: 1;
@@ -321,7 +320,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 72px 80px;
+    padding: var(--py) var(--px);
     position: relative;
   }
   .cv-label {
@@ -366,7 +365,7 @@
   }
   .cv-keyword-ko {
     font-family: 'Pretendard', sans-serif;
-    font-size: 72px;
+    font-size: clamp(40px, 5vw, 72px);
     font-weight: 600;
     margin-left: -4px;
     color: #444;
@@ -385,11 +384,10 @@
   }
   .cv-desc {
     font-family: 'Pretendard', sans-serif;
-    font-size: clamp(16px, 1.5vw, 20px);
+    font-size: clamp(15px, 1.3vw, 20px);
     color: #444;
     line-height: 1.8;
     font-weight: 400;
-    white-space: nowrap;
   }
   .cv-right {
     position: relative;
@@ -496,21 +494,6 @@
     transform: translate(-50%, -50%);
   }
 
-  @media (max-width: 768px) {
-    .about-sec { padding: 56px 32px 0; }
-    .about-top { grid-template-columns: 1fr; gap: 28px; padding-bottom: 48px; }
-    .about-title { font-size: 56px; }
-    .about-desc { padding-top: 0; }
-    .about-stats { grid-template-columns: repeat(2, 1fr); }
-    .about-stat + .about-stat { padding-left: 0; border-left: none; }
-    .about-stat:nth-child(2n) { padding-left: 20px; border-left: 1px solid rgba(44,36,22,0.12); }
-    .astat-num { font-size: 36px; }
-    .corevalues-sec { grid-template-columns: 1fr; }
-    .cv-left { padding: 56px 32px; }
-    .cv-right { min-height: 400px; }
-    .cv-content { position: relative; opacity: 1; }
-    .cv-content-wrap { min-height: auto; }
-  }
   .brand-split {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -608,9 +591,9 @@
   .pkg-notice strong { color: #1a1a1a; }
 
   /* ── 상담 문의 ── */
-  .form-sec { background: #fff; padding: 56px 0 80px; }
-  .form-sec .container { padding: 0 60px; }
-  .form-inner { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 56px; align-items: start; }
+  .form-sec { background: #fff; padding: var(--py) 0 var(--py); }
+  .form-sec .container { padding: 0 var(--px); }
+  .form-inner { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
   .form-left-desc { font-size: 13px; color: #888; line-height: 1.9; margin-bottom: 28px; }
   .form-points { display: flex; flex-direction: column; gap: 14px; }
   .form-point { display: flex; gap: 12px; align-items: flex-start; }
@@ -636,7 +619,7 @@
 
   /* FOOTER — ditto-footer */
   .ditto-footer { background: #000; color: #fff; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; }
-  .footer-top { max-width: 1280px; margin: 0 auto; padding: 72px 80px 56px; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 60px; }
+  .footer-top { max-width: 1440px; margin: 0 auto; padding: var(--py) var(--px) clamp(32px, 4vw, 56px); display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: clamp(24px, 4vw, 60px); }
   .footer-brand-name { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; color: #fff; margin-bottom: 20px; }
   .footer-brand-info { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
   .footer-brand-info p { font-size: 12px; font-weight: 400; color: #888; line-height: 1.6; }
@@ -645,134 +628,63 @@
   .footer-nav-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .footer-nav-list li a { font-size: 13px; font-weight: 400; color: #aaa; text-decoration: none; transition: color 0.2s ease; }
   .footer-nav-list li a:hover { color: #fff; }
-  .footer-divider { max-width: 1280px; margin: 0 auto; padding: 0 80px; border: none; border-top: 1px solid #1a1a1a; }
-  .footer-privacy { max-width: 1280px; margin: 0 auto; padding: 40px 80px; border-bottom: 1px solid #1a1a1a; }
+  .footer-divider { max-width: 1440px; margin: 0 auto; padding: 0 var(--px); border: none; border-top: 1px solid #1a1a1a; }
+  .footer-privacy { max-width: 1440px; margin: 0 auto; padding: clamp(24px, 3vw, 40px) var(--px); border-bottom: 1px solid #1a1a1a; }
   .footer-privacy-title { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; color: #555; text-transform: uppercase; margin-bottom: 20px; }
   .footer-privacy-body { display: flex; flex-direction: column; gap: 20px; }
   .privacy-block-title { font-size: 11px; font-weight: 600; color: #666; margin-bottom: 6px; letter-spacing: 0.04em; }
   .privacy-block-text { font-size: 11px; font-weight: 400; color: #555; line-height: 1.8; }
   .privacy-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
   .privacy-contact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .footer-bottom-bar { max-width: 1280px; margin: 0 auto; padding: 24px 80px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom-bar { max-width: 1440px; margin: 0 auto; padding: clamp(16px, 2vw, 24px) var(--px); display: flex; align-items: center; justify-content: space-between; }
   .footer-bottom-copy { font-size: 11px; font-weight: 400; color: #444; letter-spacing: 0.03em; }
   .footer-bottom-slogan { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: #333; text-transform: uppercase; }
 
-  /* ══════════════════════════════
-     반응형 — 와이드 (1441px+)
-  ══════════════════════════════ */
-  @media (min-width: 1441px) {
-    .container { max-width: 1440px; padding: 0 80px; }
-    .about-sec { padding: 56px 80px 48px; }
-    .roomview-header { padding: 80px 80px 72px; }
-    .space-sec-body { padding: 10px 80px; }
-    .footer-top { padding: 72px 80px 56px; }
-    .footer-divider, .footer-privacy, .footer-bottom-bar { padding-left: 80px; padding-right: 80px; }
+  /* ══════════════════════════════════════════════
+     반응형 — clamp()로 대부분 자동 스케일
+     명시적 구조 변경은 2개 브레이크포인트만 사용
+  ══════════════════════════════════════════════ */
+
+  /* 인라인 스타일 섹션 패딩 — var(--px) 통일 */
+  .market-main { padding: var(--py) var(--px) !important; }
+  .startup-sec { padding: var(--py) var(--px) !important; }
+  .process-sec { padding: var(--py) var(--px) var(--py) !important; }
+
+  /* 창업비용 비교표 본문 폰트 스케일 */
+  .cost-table-row > div {
+    font-size: clamp(12px, 1.3vw, 19px) !important;
+  }
+  .cost-table-header > div {
+    font-size: clamp(11px, 1.2vw, 19px) !important;
   }
 
-  /* ══════════════════════════════
-     반응형 — 데스크탑 (1025px ~ 1440px)
-  ══════════════════════════════ */
-  @media (max-width: 1440px) and (min-width: 1025px) {
-    .container { padding: 0 60px; }
-    .about-sec { padding: 56px 60px 48px; }
-    .roomview-header { padding: 72px 60px 64px; }
-    .space-sec-header { padding: 60px 60px 0; }
-    .space-sec-body { padding: 10px 60px; }
-    .footer-top { padding: 72px 60px 56px; }
-    .footer-divider { padding: 0 60px; }
-    .footer-privacy { padding: 40px 60px; }
-    .footer-bottom-bar { padding: 24px 60px; }
-  }
-
-  /* ══════════════════════════════
-     반응형 — 태블릿 (769px ~ 1024px)
-  ══════════════════════════════ */
+  /* ── 태블릿 (769px ~ 1024px) ── */
   @media (max-width: 1024px) and (min-width: 769px) {
-    .container { padding: 0 40px; }
-
-    /* NAV */
-    .nav .container { padding: 20px 40px; }
     .nav-links a { font-size: 14px; }
     .nav-links { gap: 20px; }
-
-    /* HERO */
-    .hero-content { padding: 60px 40px 48px; }
-
-    /* About Us */
-    .about-sec { padding: 48px 40px 40px; }
-    .about-top { grid-template-columns: 1fr 1fr; gap: 0; }
     .about-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .about-stat:nth-child(n) { padding-right: 0; }
-    .astat-num { font-size: 52px; }
-
-    /* Core Values */
-    .corevalues-sec { grid-template-columns: 1fr 1fr; }
-    .cv-left { padding: 56px 40px; }
-    .cv-keyword-ko { font-size: 52px; }
-
-    /* Room View 헤더 */
-    .roomview-header { padding: 56px 40px 48px; grid-template-columns: 1fr 1fr; }
-
-    /* 공간 소개 */
-    .space-sec-header { padding: 48px 40px 0; }
-    .space-sec-body { padding: 10px 40px; grid-template-columns: 1fr 1fr; }
-    .space-roller { height: 480px; }
     .space-card-v2 { transform: none !important; }
     .space-card-v2-oval { width: 220px; height: 293px; border-radius: 110px; }
     .space-card-v2-text { width: 220px; }
-
-    /* Market Insight */
-    .market-main { padding: 48px 40px !important; }
     .market-main .grid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 32px; }
     .market-main .col-span-6 { grid-column: span 1; }
     .market-main .grid-cols-3 { grid-template-columns: 1fr 1fr 1fr !important; }
-    .market-main .text-7xl { font-size: 3.5rem !important; }
-
-    /* Startup Cost */
-    .startup-sec { padding: 48px 40px !important; }
     .startup-sec .w-1\/2 { width: 50%; }
-
-    /* Process */
-    .process-sec { padding: 48px 40px 64px !important; }
-    .process-grid { grid-template-columns: repeat(4, 1fr) !important; }
-    .process-step1, .process-step2, .process-step3, .process-step4 { grid-column: auto !important; grid-row: auto !important; }
-    .process-photo { grid-column: 1 !important; grid-row: 2 / 4 !important; }
-    .process-step5, .process-step6, .process-step7 { grid-column: auto !important; grid-row: auto !important; }
-    .process-step8 { grid-column: 2 / 5 !important; grid-row: 3 !important; }
-
-    /* Form */
-    .form-inner { grid-template-columns: 1fr 1.2fr 1fr; gap: 40px; }
-    .form-sec .container { padding: 0 40px; }
-
-    /* Footer */
-    .footer-top { padding: 56px 40px 40px; }
-    .footer-divider { padding: 0 40px; }
-    .footer-privacy { padding: 32px 40px; }
-    .footer-bottom-bar { padding: 20px 40px; }
     .privacy-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .privacy-contact-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   }
 
-  /* ══════════════════════════════
-     반응형 — 모바일 (768px 이하)
-  ══════════════════════════════ */
+  /* ── 모바일 (768px 이하) ── */
   @media (max-width: 768px) {
-    /* 공통 */
-    .container { padding: 0 20px; }
-    .sec { padding: 48px 0; }
-    .sec-h, .sec-h-wh { font-size: 22px; }
-    .cta-h { font-size: 20px; }
-    .cta-tel { font-size: 24px; }
-
     /* NAV */
-    .nav .container { padding: 16px 20px; }
     .nav-links { display: none; }
     .nav-right { gap: 16px; }
     .nav-cta { font-size: 11px; padding: 7px 14px; }
 
     /* HERO */
     .hero { height: 100svh; min-height: 500px; }
-    .hero-content { padding: 0 24px 40px; }
+    .hero-content { padding: 0 var(--px) 40px; }
     .hero-kicker { font-size: 14px; }
     .hero-h1 { margin-bottom: 20px; }
     .hero-desc { font-size: 13px; margin-bottom: 32px; line-height: 1.7; }
@@ -782,38 +694,25 @@
     .hero-arrow.next { right: 12px; }
 
     /* About Us */
-    .about-sec { padding: 40px 20px 32px; }
     .about-top { grid-template-columns: 1fr; gap: 24px; padding-bottom: 36px; }
-    .about-title { font-size: 48px; }
-    .about-desc { padding-top: 0; }
-    .about-desc p { font-size: 15px !important; white-space: normal !important; }
     .about-desc p:first-child::before { display: none; }
     .about-stats { grid-template-columns: repeat(2, 1fr); gap: 0; }
     .about-stat { padding-right: 16px; padding-bottom: 24px; }
     .about-stat:nth-child(2n) { padding-left: 16px; border-left: 1px solid rgba(44,36,22,0.12); }
-    .astat-num { font-size: 36px; }
-    .astat-label { font-size: 13px; }
 
     /* Core Values */
     .corevalues-sec { grid-template-columns: 1fr; clip-path: none; margin: 0; }
-    .cv-left { padding: 48px 20px; }
-    .cv-label { font-size: 48px; }
-    .cv-keyword-ko { font-size: 52px; }
-    .cv-desc { font-size: 15px !important; white-space: normal !important; }
-    .cv-right { min-height: 320px; }
+    .cv-right { min-height: 300px; }
     .cv-content { position: relative; opacity: 1; }
     .cv-content-wrap { min-height: auto; }
-    .cv-vline { height: 120px; margin-bottom: 32px; }
+    .cv-vline { height: 100px; margin-bottom: 24px; }
 
     /* Room View 헤더 */
-    .roomview-header { padding: 40px 20px 32px; grid-template-columns: 1fr; gap: 20px; }
-    .roomview-title { font-size: 48px; }
-    .roomview-desc p { font-size: 14px !important; }
+    .roomview-header { grid-template-columns: 1fr; gap: 20px; }
 
     /* 공간 소개 */
-    .space-sec-header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 20px 0; }
-    .space-sec-body { grid-template-columns: 1fr; padding: 20px 20px 48px; }
-    .space-roller { height: 280px; }
+    .space-sec-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .space-sec-body { grid-template-columns: 1fr; padding-bottom: 40px; }
     .space-card-v2 { transform: none !important; align-items: flex-start; }
     .space-card-v2-oval { width: 100%; height: 220px; border-radius: 16px; }
     .space-card-v2-text { width: 100%; }
@@ -821,42 +720,27 @@
     /* twocol */
     .twocol-sec { grid-template-columns: 1fr; }
     .twocol-left { min-height: 260px; }
-    .twocol-right { padding: 40px 20px; }
+    .twocol-right { padding: 40px var(--px); }
 
     /* Market Insight */
-    #market { max-width: 100% !important; }
-    .market-main { padding: 40px 20px 32px !important; }
+    .market-main { padding: var(--py) var(--px) !important; }
     .market-main .grid { display: flex !important; flex-direction: column; gap: 28px; }
     .market-main .col-span-6 { width: 100% !important; }
     .market-main .col-span-6 > div[style*="height: 100%"] { height: 240px !important; }
     .market-main .grid-cols-3 { display: grid !important; grid-template-columns: 1fr !important; }
-    .market-main .grid-cols-3 > div { padding: 24px 20px !important; border: none !important; border-top: 1px solid #e3bfb2 !important; }
-    .market-main .text-7xl { font-size: 3rem !important; }
+    .market-main .grid-cols-3 > div { padding: 24px var(--px) !important; border: none !important; border-top: 1px solid #e3bfb2 !important; }
+    .market-main .text-7xl { font-size: 2.5rem !important; }
     .market-main .mt-auto { margin-top: 0 !important; }
 
     /* Startup Cost */
-    .startup-sec {
-      flex-direction: column !important;
-      padding: 40px 20px !important;
-      gap: 40px;
-    }
-    .startup-sec .w-1\/2 {
-      width: 100% !important;
-    }
-    .startup-sec span[style*="font-size: 25px"] { font-size: 16px !important; }
+    .startup-sec { flex-direction: column !important; gap: 40px; }
+    .startup-sec .w-1\/2 { width: 100% !important; }
     .startup-sec h2 { margin-bottom: 16px; }
     .startup-sec .flex.justify-end { padding-top: 0 !important; justify-content: center !important; }
     .startup-sec .flex.justify-end > div { max-width: 100% !important; height: auto !important; border-radius: 20px; }
-    .startup-sec .flex.justify-end > div > div:last-child { padding: 16px 20px !important; }
-    .startup-sec .flex.justify-end > div > div:last-child > div { font-size: 13px !important; }
-    .startup-sec .flex.justify-end > div > div:last-child > div > div { font-size: 13px !important; }
 
     /* Process */
-    .process-sec { padding: 40px 20px 48px !important; }
-    .process-grid {
-      grid-template-columns: 1fr 1fr !important;
-      grid-template-rows: auto !important;
-    }
+    .process-grid { grid-template-columns: 1fr 1fr !important; }
     .process-step1 { grid-column: 1 !important; grid-row: 1 !important; }
     .process-step2 { grid-column: 2 !important; grid-row: 1 !important; }
     .process-step3 { grid-column: 1 !important; grid-row: 2 !important; }
@@ -867,24 +751,17 @@
     .process-step7 { grid-column: 1 !important; grid-row: 5 !important; }
     .process-step8 { grid-column: 1 / 3 !important; grid-row: 6 !important; }
     .process-sec .ph-step { font-size: 28px !important; }
-    .process-sec .ph-desc { white-space: normal !important; }
     .process-sec [style*="white-space: nowrap"] { white-space: normal !important; }
+    .process-sec [style*="font-size: 11px"][style*="white-space"] { white-space: normal !important; }
 
     /* Form */
-    .form-sec { padding: 40px 0 56px; }
     .form-inner { grid-template-columns: 1fr; gap: 32px; }
-    .form-sec .container { padding: 0 20px; }
     .form-inner > div:first-child img { width: 120px !important; }
     .field-row { grid-template-columns: 1fr; }
 
-    /* CTA 배너 */
-    .cta-banner { padding: 48px 0; }
-
     /* Footer */
-    .footer-top { padding: 40px 20px 32px; grid-template-columns: 1fr; gap: 32px; }
-    .footer-divider { padding: 0 20px; }
-    .footer-privacy { padding: 28px 20px; }
-    .footer-bottom-bar { padding: 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom-bar { flex-direction: column; gap: 8px; align-items: flex-start; }
     .privacy-row { grid-template-columns: 1fr 1fr; gap: 20px; }
     .privacy-contact-row { grid-template-columns: 1fr; gap: 20px; }
   }
@@ -1001,17 +878,11 @@
     font-size: 0.75rem;
     opacity: 0.5;
   }
-  @media (max-width: 768px) {
-    .twocol-sec { grid-template-columns: 1fr; }
-    .twocol-left { min-height: 300px; }
-    .twocol-right { padding: 48px 32px; }
-    .twocol-caption { margin-top: 32px; }
-  }
 
   /* ── 공간 소개 섹션 ── */
   /* ── Room View 헤더 ── */
   .roomview-header {
-    padding: 80px 80px 72px;
+    padding: var(--py) var(--px);
     margin-bottom: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1044,7 +915,7 @@
 
   .space-sec-header {
     background: transparent;
-    padding: 60px 80px 0;
+    padding: var(--py) var(--px) 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1082,14 +953,14 @@
   }
   .space-sec-body {
     background: transparent;
-    padding: 10px 80px;
+    padding: 10px var(--px);
     display: grid;
     grid-template-columns: 48% 52%;
     gap: 0;
     align-items: start;
   }
   .space-roller {
-    width: 100%; height: 620px;
+    width: 100%; height: clamp(280px, 43vw, 620px);
     overflow: hidden; position: relative;
     background: #e8e0d5;
   }
@@ -1171,11 +1042,6 @@
     color: #aaa;
     letter-spacing: 0.03em;
   }
-  @media (max-width: 768px) {
-    .space-sec-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 24px 0; }
-    .space-sec-body { grid-template-columns: 1fr; padding: 40px 24px 80px; }
-    .space-card-col { padding-left: 0; padding-top: 40px; gap: 48px; }
-  }
 </style>
 </head>
 <body>
@@ -1224,8 +1090,8 @@
   <div class="about-top">
     <h2 class="about-title">About Us</h2>
     <div class="about-desc">
-      <p style="white-space: nowrap; font-weight: 700;">Better by Less - 비움으로써 완성되는 공간의 철학</p>
-      <p style="white-space: nowrap; font-weight: 400;">채울수록 무거워지는 공간이 아닌, 비울수록 깊어지는 공간을 생각했습니다.</p>
+      <p style="font-weight: 700;">Better by Less - 비움으로써 완성되는 공간의 철학</p>
+      <p style="font-weight: 400;">채울수록 무거워지는 공간이 아닌, 비울수록 깊어지는 공간을 생각했습니다.</p>
       <p style="font-weight: 700;">그 자리에는 오직 두 가지만을 남겼습니다.<br>온전한 몰입, 그리고 창업자를 위한 가벼운 시작.</p>
       <p class="about-closing">비움으로써 채워지는 가치, 그것이 디토엔코의 방식이자 존재이유입니다.</p>
     </div>
@@ -1624,37 +1490,37 @@
       </div>
       <div style="padding: 24px 40px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
         <!-- 컬럼 헤더 -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; font-size: 19px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; padding-bottom: 16px;">
+        <div class="cost-table-header" style="display: grid; grid-template-columns: 1fr 1fr 1fr; font-size: 19px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; padding-bottom: 16px;">
           <div style="padding-left: 8px; color: #444;">항목</div>
           <div style="text-align: center; color: #444;">타 브랜드 평균</div>
           <div style="text-align: right; padding-right: 8px; color: #F47B20;">DITTO'ENCO</div>
         </div>
         <!-- 행 1 -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
+        <div class="cost-table-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
           <div style="font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 600; color: #444; padding-left: 8px;">가맹비 · 교육비</div>
           <div style="text-align: center; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 500; color: #444;">1,100~1,650만원</div>
           <div style="text-align: right; padding-right: 8px; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #F47B20;">없음</div>
         </div>
         <!-- 행 2 -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
+        <div class="cost-table-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
           <div style="font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 600; color: #444; padding-left: 8px;">인테리어 (평당)</div>
           <div style="text-align: center; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 500; color: #444;">187~332만원</div>
           <div style="text-align: right; padding-right: 8px; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #444;">187만원</div>
         </div>
         <!-- 행 3 -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
+        <div class="cost-table-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
           <div style="font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 600; color: #444; padding-left: 8px;">설비 · 가구 · 집기</div>
           <div style="text-align: center; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 500; color: #444;">3,850~5,500만원</div>
           <div style="text-align: right; padding-right: 8px; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #444;">3,850만원</div>
         </div>
         <!-- 행 4 -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
+        <div class="cost-table-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
           <div style="font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 600; color: #444; padding-left: 8px;">키오스크</div>
           <div style="text-align: center; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 500; color: #444;">1,100만원</div>
           <div style="text-align: right; padding-right: 8px; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #444;">550만원</div>
         </div>
         <!-- 행 5 -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
+        <div class="cost-table-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; flex: 1; border-top: 1px solid #e8e0d5; align-items: center; padding: 0;">
           <div style="font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 600; color: #444; padding-left: 8px;">월 로열티</div>
           <div style="text-align: center; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 500; color: #444;">매출 5~5.5%</div>
           <div style="text-align: right; padding-right: 8px; font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #F47B20;">없음</div>
@@ -1678,7 +1544,7 @@
       <div style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: #fff; text-align: right;">STEP1</div>
       <div style="text-align: right;">
         <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 8px;">전수창업<br>문의 및 상담</p>
-        <p style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: #fff; line-height: 1.8; white-space: nowrap;">운영 현황 및 전수창업 조건 안내, 예비 창업자 미팅</p>
+        <p style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: #fff; line-height: 1.8;">운영 현황 및 전수창업 조건 안내, 예비 창업자 미팅</p>
       </div>
     </div>
 
@@ -1687,7 +1553,7 @@
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP2</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">상권분석 및<br>점포 선정</p>
-        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8; white-space: nowrap;">입지 조건 분석 및 배후 수요 검토, 점포 적합성 확인</p>
+        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8;">입지 조건 분석 및 배후 수요 검토, 점포 적합성 확인</p>
       </div>
     </div>
 
@@ -1696,7 +1562,7 @@
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP3</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">전수 계약<br>체결</p>
-        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8; white-space: nowrap;">전수창업 계약 및 비용 구조 확정, 일정 협의</p>
+        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8;">전수창업 계약 및 비용 구조 확정, 일정 협의</p>
       </div>
     </div>
 
@@ -1705,7 +1571,7 @@
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP4</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">도면 설계 및<br>인테리어 시공</p>
-        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8; white-space: nowrap;">(주)디토플랜 직접 설계·시공, 디토'엔코 공간 철학 구현</p>
+        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8;">(주)디토플랜 직접 설계·시공, 디토'엔코 공간 철학 구현</p>
       </div>
     </div>
 
@@ -1721,7 +1587,7 @@
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP5</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">기본 교육 및<br>오픈 준비</p>
-        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8; white-space: nowrap;">키오스크·운영 시스템 교육, CS 대응 및 운영 매뉴얼 실습</p>
+        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8;">키오스크·운영 시스템 교육, CS 대응 및 운영 매뉴얼 실습</p>
       </div>
     </div>
 
@@ -1730,7 +1596,7 @@
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP6</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">집기 및<br>초도물품 입고</p>
-        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8; white-space: nowrap;">가구·집기 설치, 소모품 및 초도물품 세팅 완료</p>
+        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8;">가구·집기 설치, 소모품 및 초도물품 세팅 완료</p>
       </div>
     </div>
 
@@ -1739,7 +1605,7 @@
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP7</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">오픈 지원 및<br>추가 교육</p>
-        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8; white-space: nowrap;">오픈 현장 동행 지원, 실전 운영 피드백 제공</p>
+        <p class="ph-desc" style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: rgba(68,68,68,0.7); line-height: 1.8;">오픈 현장 동행 지원, 실전 운영 피드백 제공</p>
       </div>
     </div>
 
@@ -1748,7 +1614,7 @@
       <div style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: #fff; text-align: right;">STEP8</div>
       <div style="text-align: right;">
         <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 8px;">매장 오픈 및<br>마케팅 지원</p>
-        <p style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: #fff; line-height: 1.8; white-space: nowrap;">네이버 플레이스, 검색광고 세팅, 오픈 홍보물 제작 및 배포 지원</p>
+        <p style="font-family: 'Pretendard', sans-serif; font-size: 11px; font-weight: 600; color: #fff; line-height: 1.8;">네이버 플레이스, 검색광고 세팅, 오픈 홍보물 제작 및 배포 지원</p>
       </div>
     </div>
 
