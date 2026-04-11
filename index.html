@@ -1982,6 +1982,28 @@
     }
     requestAnimationFrame(update);
   }
+
+  // ── 데스크탑 비율 스케일링 ──
+  // 1280px 디자인을 기준으로, 뷰포트가 넓을수록 동일 비율로 확대
+  (function() {
+    const canvas = document.querySelector('.page-canvas');
+    if (!canvas) return;
+
+    function applyScale() {
+      const vw = window.innerWidth;
+      if (vw >= 1280) {
+        const scale = vw / 1280;
+        canvas.style.zoom = scale;
+        canvas.style.width = '1280px';
+      } else {
+        canvas.style.zoom = '';
+        canvas.style.width = '';
+      }
+    }
+
+    applyScale();
+    window.addEventListener('resize', applyScale);
+  })();
 </script>
 </body>
 </html>
