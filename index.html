@@ -606,6 +606,7 @@
 
   /* ── 상담 문의 ── */
   .form-sec { background: #fff; padding: 56px 0 80px; }
+  .form-sec .container { padding: 0 60px; }
   .form-inner { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 56px; align-items: start; }
   .form-left-desc { font-size: 13px; color: #888; line-height: 1.9; margin-bottom: 28px; }
   .form-points { display: flex; flex-direction: column; gap: 14px; }
@@ -653,37 +654,236 @@
   .footer-bottom-copy { font-size: 11px; font-weight: 400; color: #444; letter-spacing: 0.03em; }
   .footer-bottom-slogan { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: #333; text-transform: uppercase; }
 
-  /* 반응형 */
-  @media (max-width: 1024px) {
-    .container { padding: 0 24px; }
-    .brand-grid { gap: 40px; }
-    .market-top { grid-template-columns: 1fr 1fr; }
-    .footer .container { grid-template-columns: 1fr 1fr; }
+  /* ══════════════════════════════
+     반응형 — 와이드 (1441px+)
+  ══════════════════════════════ */
+  @media (min-width: 1441px) {
+    .container { max-width: 1440px; padding: 0 80px; }
+    .about-sec { padding: 56px 80px 48px; }
+    .roomview-header { padding: 80px 80px 72px; }
+    .space-sec-body { padding: 10px 80px; }
+    .footer-top { padding: 72px 80px 56px; }
+    .footer-divider, .footer-privacy, .footer-bottom-bar { padding-left: 80px; padding-right: 80px; }
   }
+
+  /* ══════════════════════════════
+     반응형 — 데스크탑 (1025px ~ 1440px)
+  ══════════════════════════════ */
+  @media (max-width: 1440px) and (min-width: 1025px) {
+    .container { padding: 0 60px; }
+    .about-sec { padding: 56px 60px 48px; }
+    .roomview-header { padding: 72px 60px 64px; }
+    .space-sec-header { padding: 60px 60px 0; }
+    .space-sec-body { padding: 10px 60px; }
+    .footer-top { padding: 72px 60px 56px; }
+    .footer-divider { padding: 0 60px; }
+    .footer-privacy { padding: 40px 60px; }
+    .footer-bottom-bar { padding: 24px 60px; }
+  }
+
+  /* ══════════════════════════════
+     반응형 — 태블릿 (769px ~ 1024px)
+  ══════════════════════════════ */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .container { padding: 0 40px; }
+
+    /* NAV */
+    .nav .container { padding: 20px 40px; }
+    .nav-links a { font-size: 14px; }
+    .nav-links { gap: 20px; }
+
+    /* HERO */
+    .hero-content { padding: 60px 40px 48px; }
+
+    /* About Us */
+    .about-sec { padding: 48px 40px 40px; }
+    .about-top { grid-template-columns: 1fr 1fr; gap: 0; }
+    .about-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .about-stat:nth-child(n) { padding-right: 0; }
+    .astat-num { font-size: 52px; }
+
+    /* Core Values */
+    .corevalues-sec { grid-template-columns: 1fr 1fr; }
+    .cv-left { padding: 56px 40px; }
+    .cv-keyword-ko { font-size: 52px; }
+
+    /* Room View 헤더 */
+    .roomview-header { padding: 56px 40px 48px; grid-template-columns: 1fr 1fr; }
+
+    /* 공간 소개 */
+    .space-sec-header { padding: 48px 40px 0; }
+    .space-sec-body { padding: 10px 40px; grid-template-columns: 1fr 1fr; }
+    .space-roller { height: 480px; }
+    .space-card-v2 { transform: none !important; }
+    .space-card-v2-oval { width: 220px; height: 293px; border-radius: 110px; }
+    .space-card-v2-text { width: 220px; }
+
+    /* Market Insight */
+    .market-main { padding: 48px 40px !important; }
+    .market-main .grid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .market-main .col-span-6 { grid-column: span 1; }
+    .market-main .grid-cols-3 { grid-template-columns: 1fr 1fr 1fr !important; }
+    .market-main .text-7xl { font-size: 3.5rem !important; }
+
+    /* Startup Cost */
+    .startup-sec { padding: 48px 40px !important; }
+    .startup-sec .w-1\/2 { width: 50%; }
+
+    /* Process */
+    .process-sec { padding: 48px 40px 64px !important; }
+    .process-grid { grid-template-columns: repeat(4, 1fr) !important; }
+    .process-step1, .process-step2, .process-step3, .process-step4 { grid-column: auto !important; grid-row: auto !important; }
+    .process-photo { grid-column: 1 !important; grid-row: 2 / 4 !important; }
+    .process-step5, .process-step6, .process-step7 { grid-column: auto !important; grid-row: auto !important; }
+    .process-step8 { grid-column: 2 / 5 !important; grid-row: 3 !important; }
+
+    /* Form */
+    .form-inner { grid-template-columns: 1fr 1.2fr 1fr; gap: 40px; }
+    .form-sec .container { padding: 0 40px; }
+
+    /* Footer */
+    .footer-top { padding: 56px 40px 40px; }
+    .footer-divider { padding: 0 40px; }
+    .footer-privacy { padding: 32px 40px; }
+    .footer-bottom-bar { padding: 20px 40px; }
+    .privacy-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .privacy-contact-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+
+  /* ══════════════════════════════
+     반응형 — 모바일 (768px 이하)
+  ══════════════════════════════ */
   @media (max-width: 768px) {
+    /* 공통 */
     .container { padding: 0 20px; }
+    .sec { padding: 48px 0; }
+    .sec-h, .sec-h-wh { font-size: 22px; }
+    .cta-h { font-size: 20px; }
+    .cta-tel { font-size: 24px; }
+
+    /* NAV */
+    .nav .container { padding: 16px 20px; }
     .nav-links { display: none; }
+    .nav-right { gap: 16px; }
+    .nav-cta { font-size: 11px; padding: 7px 14px; }
+
+    /* HERO */
     .hero { height: 100svh; min-height: 500px; }
-    .hero-h1 { font-size: 30px; }
-    .hero-desc { font-size: 13px; }
-    .hero-btns { flex-direction: column; align-items: center; }
+    .hero-content { padding: 0 24px 40px; }
+    .hero-kicker { font-size: 14px; }
+    .hero-h1 { margin-bottom: 20px; }
+    .hero-desc { font-size: 13px; margin-bottom: 32px; line-height: 1.7; }
+    .hero-btns { flex-direction: column; align-items: flex-start; gap: 10px; }
     .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
-    .hero-arrow.prev { left: 14px; }
-    .hero-arrow.next { right: 14px; }
-    .hero-stat .num { font-size: 18px; }
-    .brand-grid, .space-intro, .form-inner { grid-template-columns: 1fr; gap: 36px; }
-    .brand-img { height: 240px; }
-    .brand-values { grid-template-columns: 1fr; }
-    .proof-grid { grid-template-columns: 1fr; }
-    .market-top { grid-template-columns: 1fr; }
-    .pkg-grid { grid-template-columns: 1fr; }
-    .space-philosophy { grid-template-columns: 1fr; }
+    .hero-arrow.prev { left: 12px; }
+    .hero-arrow.next { right: 12px; }
+
+    /* About Us */
+    .about-sec { padding: 40px 20px 32px; }
+    .about-top { grid-template-columns: 1fr; gap: 24px; padding-bottom: 36px; }
+    .about-title { font-size: 48px; }
+    .about-desc { padding-top: 0; }
+    .about-desc p { font-size: 15px !important; white-space: normal !important; }
+    .about-desc p:first-child::before { display: none; }
+    .about-stats { grid-template-columns: repeat(2, 1fr); gap: 0; }
+    .about-stat { padding-right: 16px; padding-bottom: 24px; }
+    .about-stat:nth-child(2n) { padding-left: 16px; border-left: 1px solid rgba(44,36,22,0.12); }
+    .astat-num { font-size: 36px; }
+    .astat-label { font-size: 13px; }
+
+    /* Core Values */
+    .corevalues-sec { grid-template-columns: 1fr; clip-path: none; margin: 0; }
+    .cv-left { padding: 48px 20px; }
+    .cv-label { font-size: 48px; }
+    .cv-keyword-ko { font-size: 52px; }
+    .cv-desc { font-size: 15px !important; white-space: normal !important; }
+    .cv-right { min-height: 320px; }
+    .cv-content { position: relative; opacity: 1; }
+    .cv-content-wrap { min-height: auto; }
+    .cv-vline { height: 120px; margin-bottom: 32px; }
+
+    /* Room View 헤더 */
+    .roomview-header { padding: 40px 20px 32px; grid-template-columns: 1fr; gap: 20px; }
+    .roomview-title { font-size: 48px; }
+    .roomview-desc p { font-size: 14px !important; }
+
+    /* 공간 소개 */
+    .space-sec-header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 20px 0; }
+    .space-sec-body { grid-template-columns: 1fr; padding: 20px 20px 48px; }
+    .space-roller { height: 280px; }
+    .space-card-v2 { transform: none !important; align-items: flex-start; }
+    .space-card-v2-oval { width: 100%; height: 220px; border-radius: 16px; }
+    .space-card-v2-text { width: 100%; }
+
+    /* twocol */
+    .twocol-sec { grid-template-columns: 1fr; }
+    .twocol-left { min-height: 260px; }
+    .twocol-right { padding: 40px 20px; }
+
+    /* Market Insight */
+    #market { max-width: 100% !important; }
+    .market-main { padding: 40px 20px 32px !important; }
+    .market-main .grid { display: flex !important; flex-direction: column; gap: 28px; }
+    .market-main .col-span-6 { width: 100% !important; }
+    .market-main .col-span-6 > div[style*="height: 100%"] { height: 240px !important; }
+    .market-main .grid-cols-3 { display: grid !important; grid-template-columns: 1fr !important; }
+    .market-main .grid-cols-3 > div { padding: 24px 20px !important; border: none !important; border-top: 1px solid #e3bfb2 !important; }
+    .market-main .text-7xl { font-size: 3rem !important; }
+    .market-main .mt-auto { margin-top: 0 !important; }
+
+    /* Startup Cost */
+    .startup-sec {
+      flex-direction: column !important;
+      padding: 40px 20px !important;
+      gap: 40px;
+    }
+    .startup-sec .w-1\/2 {
+      width: 100% !important;
+    }
+    .startup-sec span[style*="font-size: 25px"] { font-size: 16px !important; }
+    .startup-sec h2 { margin-bottom: 16px; }
+    .startup-sec .flex.justify-end { padding-top: 0 !important; justify-content: center !important; }
+    .startup-sec .flex.justify-end > div { max-width: 100% !important; height: auto !important; border-radius: 20px; }
+    .startup-sec .flex.justify-end > div > div:last-child { padding: 16px 20px !important; }
+    .startup-sec .flex.justify-end > div > div:last-child > div { font-size: 13px !important; }
+    .startup-sec .flex.justify-end > div > div:last-child > div > div { font-size: 13px !important; }
+
+    /* Process */
+    .process-sec { padding: 40px 20px 48px !important; }
+    .process-grid {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto !important;
+    }
+    .process-step1 { grid-column: 1 !important; grid-row: 1 !important; }
+    .process-step2 { grid-column: 2 !important; grid-row: 1 !important; }
+    .process-step3 { grid-column: 1 !important; grid-row: 2 !important; }
+    .process-step4 { grid-column: 2 !important; grid-row: 2 !important; }
+    .process-photo { grid-column: 1 / 3 !important; grid-row: 3 !important; min-height: 200px !important; }
+    .process-step5 { grid-column: 1 !important; grid-row: 4 !important; }
+    .process-step6 { grid-column: 2 !important; grid-row: 4 !important; }
+    .process-step7 { grid-column: 1 !important; grid-row: 5 !important; }
+    .process-step8 { grid-column: 1 / 3 !important; grid-row: 6 !important; }
+    .process-sec .ph-step { font-size: 28px !important; }
+    .process-sec .ph-desc { white-space: normal !important; }
+    .process-sec [style*="white-space: nowrap"] { white-space: normal !important; }
+
+    /* Form */
+    .form-sec { padding: 40px 0 56px; }
+    .form-inner { grid-template-columns: 1fr; gap: 32px; }
+    .form-sec .container { padding: 0 20px; }
+    .form-inner > div:first-child img { width: 120px !important; }
     .field-row { grid-template-columns: 1fr; }
-    .footer .container { grid-template-columns: 1fr; gap: 28px; }
-    .sec { padding: 56px 0; }
-    .sec-h, .sec-h-wh { font-size: 24px; }
-    .cta-h { font-size: 22px; }
-    .cta-tel { font-size: 26px; }
+
+    /* CTA 배너 */
+    .cta-banner { padding: 48px 0; }
+
+    /* Footer */
+    .footer-top { padding: 40px 20px 32px; grid-template-columns: 1fr; gap: 32px; }
+    .footer-divider { padding: 0 20px; }
+    .footer-privacy { padding: 28px 20px; }
+    .footer-bottom-bar { padding: 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    .privacy-row { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .privacy-contact-row { grid-template-columns: 1fr; gap: 20px; }
   }
 
   /* ── 2컬럼 공간 카드 섹션 ── */
@@ -1312,8 +1512,8 @@
 </section>
 
 <!-- 시장 분석 에디토리얼 섹션 -->
-<section id="market" style="background: #FDFAF4; max-width: 1440px; margin: 0 auto; overflow: hidden;">
-<main class="w-full mx-auto bg-surface relative overflow-hidden flex flex-col justify-between py-24 px-12" style="padding-left: 80px; padding-top: 56px;">
+<section id="market" style="background: #FDFAF4; overflow: hidden;">
+<main class="w-full mx-auto bg-surface relative overflow-hidden flex flex-col justify-between py-24 px-12 market-main" style="padding-left: 80px; padding-top: 56px;">
   <!-- Top Editorial Content Layer -->
   <div class="grid grid-cols-12 gap-12 relative z-10" style="align-items: stretch;">
     <div class="col-span-6">
@@ -1366,7 +1566,7 @@
 </section>
 
 <!-- 창업 비용 비교 섹션 -->
-<section class="relative w-full max-w-[1440px] mx-auto overflow-hidden flex items-stretch px-24 py-24" style="background-image: url('./images/startup.webp'); background-size: cover; background-position: center;">
+<section class="startup-sec relative w-full mx-auto overflow-hidden flex items-stretch px-24 py-24" style="background-image: url('./images/startup.webp'); background-size: cover; background-position: center;">
   <div class="absolute inset-0" style="background: rgba(68,68,68,0.92); z-index: 0;"></div>
   <!-- 장식 요소 -->
   <div class="absolute top-40 right-1/4 w-32 h-32 pointer-events-none" style="border: 1px solid rgba(244,123,32,0.3); border-radius: 9999px;"></div>
@@ -1463,14 +1663,14 @@
 
 
 <!-- 전수창업 진행 절차 섹션 -->
-<section style="width: 100%; max-width: 1440px; margin: 0 auto; padding: 56px 80px 80px; background: #FDFAF4;">
+<section class="process-sec" style="width: 100%; padding: 56px 80px 80px; background: #FDFAF4;">
   <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(48px, 7vw, 96px); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; color: #444; margin-bottom: 56px;">The Process</h2>
 
   <!-- 단일 그리드: 4열 × 3행 -->
-  <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, auto); gap: 20px;">
+  <div class="process-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, auto); gap: 20px;">
 
     <!-- STEP1: 1열 1행 -->
-    <div style="grid-column: 1; grid-row: 1; background: #F47B20; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div class="process-step1" style="grid-column: 1; grid-row: 1; background: #F47B20; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between;">
       <div style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: #fff; text-align: right;">STEP1</div>
       <div style="text-align: right;">
         <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 8px;">전수창업<br>문의 및 상담</p>
@@ -1479,7 +1679,7 @@
     </div>
 
     <!-- STEP2: 2열 1행 -->
-    <div class="process-hoverable" style="grid-column: 2; grid-row: 1; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
+    <div class="process-hoverable process-step2" style="grid-column: 2; grid-row: 1; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP2</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">상권분석 및<br>점포 선정</p>
@@ -1488,7 +1688,7 @@
     </div>
 
     <!-- STEP3: 3열 1행 -->
-    <div class="process-hoverable" style="grid-column: 3; grid-row: 1; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
+    <div class="process-hoverable process-step3" style="grid-column: 3; grid-row: 1; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP3</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">전수 계약<br>체결</p>
@@ -1497,7 +1697,7 @@
     </div>
 
     <!-- STEP4: 4열 1행 -->
-    <div class="process-hoverable" style="grid-column: 4; grid-row: 1; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
+    <div class="process-hoverable process-step4" style="grid-column: 4; grid-row: 1; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP4</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">도면 설계 및<br>인테리어 시공</p>
@@ -1506,14 +1706,14 @@
     </div>
 
     <!-- 사진: 1열 2-3행 (row-span 2) -->
-    <div class="process-img-wrap" style="grid-column: 1; grid-row: 2 / 4; overflow: hidden; position: relative;">
+    <div class="process-img-wrap process-photo" style="grid-column: 1; grid-row: 2 / 4; overflow: hidden; position: relative;">
       <img src="./images/process.webp" alt="Process" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
       <div class="process-img-overlay"></div>
       <div class="process-img-text">Are You In?</div>
     </div>
 
     <!-- STEP5: 2열 2행 -->
-    <div class="process-hoverable" style="grid-column: 2; grid-row: 2; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
+    <div class="process-hoverable process-step5" style="grid-column: 2; grid-row: 2; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP5</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">기본 교육 및<br>오픈 준비</p>
@@ -1522,7 +1722,7 @@
     </div>
 
     <!-- STEP6: 3열 2행 -->
-    <div class="process-hoverable" style="grid-column: 3; grid-row: 2; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
+    <div class="process-hoverable process-step6" style="grid-column: 3; grid-row: 2; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP6</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">집기 및<br>초도물품 입고</p>
@@ -1531,7 +1731,7 @@
     </div>
 
     <!-- STEP7: 4열 2행 -->
-    <div class="process-hoverable" style="grid-column: 4; grid-row: 2; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
+    <div class="process-hoverable process-step7" style="grid-column: 4; grid-row: 2; background: #fff; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; cursor: default; transition: background 0.25s ease;">
       <div class="ph-step" style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: rgba(68,68,68,0.15); text-align: right;">STEP7</div>
       <div style="text-align: right;">
         <p class="ph-title" style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 1.5; margin-bottom: 8px;">오픈 지원 및<br>추가 교육</p>
@@ -1540,7 +1740,7 @@
     </div>
 
     <!-- STEP8: 2-4열 3행 -->
-    <div style="grid-column: 2 / 5; grid-row: 3; background: #F47B20; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div class="process-step8" style="grid-column: 2 / 5; grid-row: 3; background: #F47B20; padding: 28px 24px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between;">
       <div style="font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 800; line-height: 1; color: #fff; text-align: right;">STEP8</div>
       <div style="text-align: right;">
         <p style="font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 8px;">매장 오픈 및<br>마케팅 지원</p>
