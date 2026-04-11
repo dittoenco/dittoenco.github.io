@@ -1989,20 +1989,35 @@
   }
 
   // ── 데스크탑 비율 스케일링 ──
-  // 1280px 디자인 기준, body에 zoom 적용해 비율 유지
+  // 1280px 디자인 기준, transform:scale로 비율 유지
   (function() {
+    const canvas = document.querySelector('.page-canvas');
+    if (!canvas) return;
+
     function applyScale() {
       const vw = window.innerWidth;
       if (vw >= 1280) {
         const scale = vw / 1280;
-        document.body.style.zoom = String(scale);
-        document.body.style.width = (1280 / vw * 100) + '%';
+        canvas.style.width = '1280px';
+        canvas.style.margin = '0';
+        canvas.style.transformOrigin = 'top left';
+        canvas.style.transform = 'scale(' + scale + ')';
+        document.body.style.width = vw + 'px';
+        requestAnimationFrame(function() {
+          document.body.style.height = (canvas.offsetHeight * scale) + 'px';
+        });
       } else {
-        document.body.style.zoom = '';
+        canvas.style.width = '';
+        canvas.style.margin = '';
+        canvas.style.transformOrigin = '';
+        canvas.style.transform = '';
         document.body.style.width = '';
+        document.body.style.height = '';
       }
     }
+
     applyScale();
+    window.addEventListener('load', applyScale);
     window.addEventListener('resize', applyScale);
   })();
 </script>
