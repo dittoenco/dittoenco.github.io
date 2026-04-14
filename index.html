@@ -1707,7 +1707,7 @@
               <p>이용자의 개인정보는 원칙적으로, 개인정보 수집 및 이용목적이 달성되면 지체 없이 파기합니다.<br>신청내용은 별도의 요청이 없는 경우, 관리를 위해 분석기관에 종속되어 보관됩니다.<br><span style="color:#e02020;">*</span>상담 신청 과정에서 이용기록, 접속로그, 쿠키, 접속IP정보가 생성되어 수집될 수 있습니다.</p>
             </div>
           </div>
-          <button class="submit-btn" type="button" onclick="submitConsultForm()">상담 신청하기</button>
+          <button class="submit-btn" type="button" onclick="submitForm(event)">상담 신청하기</button>
           <p class="form-note">입력하신 정보는 전수창업 상담 목적으로만 사용되며, 제3자에게 제공되지 않습니다.</p>
         </div>
       </div>
@@ -2013,6 +2013,48 @@
     window.addEventListener('load', applyScale);
     window.addEventListener('resize', applyScale);
   })();
+
+  // 구글 시트 폼 제출
+  function submitForm(event) {
+    event.preventDefault();
+
+    var name    = document.getElementById('f-name').value.trim();
+    var tel     = document.getElementById('f-tel').value.trim();
+    var region  = document.getElementById('f-region').value.trim();
+    var timing  = document.getElementById('f-timing').value;
+    var meeting = document.getElementById('f-meeting').value;
+    var memo    = document.getElementById('f-memo').value.trim();
+    var privacy = document.getElementById('privacy-agree').checked;
+
+    if (!name) { alert('이름을 입력해 주세요.'); return; }
+    if (!tel)  { alert('연락처를 입력해 주세요.'); return; }
+    if (!privacy) { alert('개인정보 수집 및 이용에 동의해 주세요.'); return; }
+
+    var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6lo5Un8Nreq4fug6o8IGeplJfTEvhSzzk9q_4BtFjChulLqfxVuwsCQoliUTUU825/exec';
+
+    var params = new URLSearchParams();
+    params.append('name',    name);
+    params.append('tel',     tel);
+    params.append('region',  region);
+    params.append('timing',  timing);
+    params.append('meeting', meeting);
+    params.append('memo',    memo);
+
+    fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' })
+      .then(function() {
+        alert('상담 신청이 완료되었습니다. 빠른 시간 내에 연락드리겠습니다.');
+        document.getElementById('f-name').value    = '';
+        document.getElementById('f-tel').value     = '';
+        document.getElementById('f-region').value  = '';
+        document.getElementById('f-timing').value  = document.getElementById('f-timing').options[0].value;
+        document.getElementById('f-meeting').value = document.getElementById('f-meeting').options[0].value;
+        document.getElementById('f-memo').value    = '';
+        document.getElementById('privacy-agree').checked = false;
+      })
+      .catch(function() {
+        alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+      });
+  }
 </script>
 </body>
 </html>
