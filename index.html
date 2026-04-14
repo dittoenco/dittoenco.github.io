@@ -1659,6 +1659,10 @@
             </div>
           </div>
           <div class="field">
+            <label><span style="color:#e02020; margin-right:3px;">✱</span>이메일</label>
+            <input id="f-email" type="email" placeholder="example@email.com">
+          </div>
+          <div class="field">
             <label><span style="color:#e02020; margin-right:3px;">✱</span>창업 희망 지역</label>
             <input id="f-region" type="text" placeholder="예) 서울 마포구, 경기 고양시 등">
           </div>
@@ -1949,6 +1953,7 @@
   function submitConsultForm() {
     const name    = document.getElementById('f-name').value.trim();
     const tel     = document.getElementById('f-tel').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
     const region  = document.getElementById('f-region').value.trim();
     const timing  = document.getElementById('f-timing').value;
     const meeting = document.getElementById('f-meeting').value;
@@ -1956,6 +1961,8 @@
 
     if (!name)    { alert('성함을 입력해 주세요.'); document.getElementById('f-name').focus(); return; }
     if (!tel)     { alert('연락처를 입력해 주세요.'); document.getElementById('f-tel').focus(); return; }
+    if (!email)   { alert('이메일을 입력해 주세요.'); document.getElementById('f-email').focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('올바른 이메일 형식을 입력해 주세요.'); document.getElementById('f-email').focus(); return; }
     if (!region)  { alert('창업 희망 지역을 입력해 주세요.'); document.getElementById('f-region').focus(); return; }
     if (!timing)  { alert('창업 예정 시기를 선택해 주세요.'); document.getElementById('f-timing').focus(); return; }
     if (!meeting) { alert('희망 미팅 방식을 선택해 주세요.'); document.getElementById('f-meeting').focus(); return; }
