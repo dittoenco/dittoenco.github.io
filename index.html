@@ -30,8 +30,8 @@
 <!-- Preload hero image -->
 <link rel="preload" as="image" href="./images/hero.webp">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" media="print" onload="this.media='all'"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -1269,7 +1269,7 @@
   <!-- RIGHT: 원본 이미지 위에 5분할 오버레이 -->
   <div class="cv-right">
     <div class="cv-img-wrap">
-    <img class="cv-full-img" src="./images/corevalue.webp" alt="디토엔코 코어 밸류 — 몰입, 회복, 성장을 담은 공간">
+    <img class="cv-full-img" src="./images/corevalue.webp" alt="디토엔코 코어 밸류 — 몰입, 회복, 성장을 담은 공간" loading="lazy">
     <div class="cv-panels-overlay">
       <div class="cv-panel" data-cv="0">
         <div class="cv-panel-overlay"></div>
@@ -1329,12 +1329,12 @@
     <div class="space-img-col">
       <div class="space-roller">
         <div class="space-roller-track">
-          <img src="./images/entrance.webp" alt="디토엔코 입구 전경">
-          <img src="./images/lobby1.webp" alt="디토엔코 오픈 라운지 내부 1">
-          <img src="./images/lobby2.webp" alt="디토엔코 오픈 라운지 내부 2">
-          <img src="./images/lobby3.webp" alt="디토엔코 오픈 라운지 내부 3">
-          <img src="./images/lobby4.webp" alt="디토엔코 오픈 라운지 내부 4">
-          <img src="./images/entrance.webp" alt="" aria-hidden="true">
+          <img src="./images/entrance.webp" alt="디토엔코 입구 전경" loading="lazy">
+          <img src="./images/lobby1.webp" alt="디토엔코 오픈 라운지 내부 1" loading="lazy">
+          <img src="./images/lobby2.webp" alt="디토엔코 오픈 라운지 내부 2" loading="lazy">
+          <img src="./images/lobby3.webp" alt="디토엔코 오픈 라운지 내부 3" loading="lazy">
+          <img src="./images/lobby4.webp" alt="디토엔코 오픈 라운지 내부 4" loading="lazy">
+          <img src="./images/entrance.webp" alt="" aria-hidden="true" loading="lazy">
         </div>
         <div class="space-roller-dots">
           <span class="dot active"></span>
@@ -1349,7 +1349,7 @@
     <div class="space-img-col" style="display: flex; justify-content: center; align-self: stretch; align-items: center;">
       <div class="space-card-v2" style="transform: translateX(15%);">
         <div class="space-card-v2-oval">
-          <img src="./images/lobby0.webp" alt="디토엔코 오픈 라운지 대표 사진">
+          <img src="./images/lobby0.webp" alt="디토엔코 오픈 라운지 대표 사진" loading="lazy">
         </div>
         <div class="space-card-v2-text">
           <h3 class="space-card-v2-title">오픈 라운지 (Open Lounge)</h3>
@@ -1367,7 +1367,7 @@
     <div class="space-img-col" style="display: flex; justify-content: center; align-self: stretch; align-items: center;">
       <div class="space-card-v2" style="transform: translateX(-15%);">
         <div class="space-card-v2-oval">
-          <img src="./images/freefocus0.webp" alt="디토엔코 프리룸 & 포커스룸 대표 사진">
+          <img src="./images/freefocus0.webp" alt="디토엔코 프리룸 & 포커스룸 대표 사진" loading="lazy">
         </div>
         <div class="space-card-v2-text">
           <h3 class="space-card-v2-title">프리룸 &amp; 포커스룸 (Free &amp; Focus Room)</h3>
@@ -1382,12 +1382,12 @@
     <div class="space-img-col">
       <div class="space-roller">
         <div class="space-roller-track">
-          <img src="./images/freefocus0.webp" alt="디토엔코 프리룸 내부 1">
-          <img src="./images/freefocus1.webp" alt="디토엔코 포커스룸 내부 1">
-          <img src="./images/freefocus2.webp" alt="디토엔코 포커스룸 내부 2">
-          <img src="./images/freefocus3.webp" alt="디토엔코 포커스룸 내부 3" style="object-position: right center;">
-          <img src="./images/freefocus4.webp" alt="디토엔코 포커스룸 내부 4">
-          <img src="./images/freefocus0.webp" alt="" aria-hidden="true">
+          <img src="./images/freefocus0.webp" alt="디토엔코 프리룸 내부 1" loading="lazy">
+          <img src="./images/freefocus1.webp" alt="디토엔코 포커스룸 내부 1" loading="lazy">
+          <img src="./images/freefocus2.webp" alt="디토엔코 포커스룸 내부 2" loading="lazy">
+          <img src="./images/freefocus3.webp" alt="디토엔코 포커스룸 내부 3" style="object-position: right center;" loading="lazy">
+          <img src="./images/freefocus4.webp" alt="디토엔코 포커스룸 내부 4" loading="lazy">
+          <img src="./images/freefocus0.webp" alt="" aria-hidden="true" loading="lazy">
         </div>
         <div class="space-roller-dots">
           <span class="dot active"></span>
@@ -1404,12 +1404,12 @@
     <div class="space-img-col">
       <div class="space-roller">
         <div class="space-roller-track">
-          <img src="./images/notebook0.webp" alt="디토엔코 노트북존 내부 1">
-          <img src="./images/notebook1.webp" alt="디토엔코 노트북존 내부 2">
-          <img src="./images/notebook2.webp" alt="디토엔코 노트북존 내부 3">
-          <img src="./images/notebook3.webp" alt="디토엔코 노트북존 내부 4">
-          <img src="./images/notebook4.webp" alt="디토엔코 노트북존 내부 5">
-          <img src="./images/notebook0.webp" alt="" aria-hidden="true">
+          <img src="./images/notebook0.webp" alt="디토엔코 노트북존 내부 1" loading="lazy">
+          <img src="./images/notebook1.webp" alt="디토엔코 노트북존 내부 2" loading="lazy">
+          <img src="./images/notebook2.webp" alt="디토엔코 노트북존 내부 3" loading="lazy">
+          <img src="./images/notebook3.webp" alt="디토엔코 노트북존 내부 4" loading="lazy">
+          <img src="./images/notebook4.webp" alt="디토엔코 노트북존 내부 5" loading="lazy">
+          <img src="./images/notebook0.webp" alt="" aria-hidden="true" loading="lazy">
         </div>
         <div class="space-roller-dots">
           <span class="dot active"></span>
@@ -1423,7 +1423,7 @@
     <div class="space-img-col" style="display: flex; justify-content: center; align-self: stretch; align-items: center;">
       <div class="space-card-v2" style="transform: translateX(15%);">
         <div class="space-card-v2-oval">
-          <img src="./images/notebook0.webp" alt="디토엔코 노트북존 대표 사진" style="object-position: center;">
+          <img src="./images/notebook0.webp" alt="디토엔코 노트북존 대표 사진" style="object-position: center;" loading="lazy">
         </div>
         <div class="space-card-v2-text">
           <h3 class="space-card-v2-title">노트북 존 (Notebook Zone)</h3>
@@ -1441,7 +1441,7 @@
     <div class="space-img-col" style="display: flex; justify-content: center; align-self: stretch; align-items: center;">
       <div class="space-card-v2" style="transform: translateX(-15%);">
         <div class="space-card-v2-oval">
-          <img src="./images/relaxsupport0.webp" alt="디토엔코 릴렉스 & 서포트 대표 사진" style="object-position: center;">
+          <img src="./images/relaxsupport0.webp" alt="디토엔코 릴렉스 & 서포트 대표 사진" style="object-position: center;" loading="lazy">
         </div>
         <div class="space-card-v2-text">
           <h3 class="space-card-v2-title">릴렉스 &amp; 서포트 (Relax &amp; Support)</h3>
@@ -1456,12 +1456,12 @@
     <div class="space-img-col">
       <div class="space-roller">
         <div class="space-roller-track">
-          <img src="./images/relaxsupport0.webp" alt="디토엔코 릴렉스룸 내부 1" style="object-position: center 65%;">
-          <img src="./images/relaxsupport1.webp" alt="디토엔코 릴렉스룸 내부 2">
-          <img src="./images/relaxsupport2.webp" alt="디토엔코 서포트 공간 내부 1">
-          <img src="./images/relaxsupport3.webp" alt="디토엔코 서포트 공간 내부 2">
-          <img src="./images/relaxsupport4.webp" alt="디토엔코 편의시설 내부">
-          <img src="./images/relaxsupport0.webp" alt="" aria-hidden="true" style="object-position: center 65%;">
+          <img src="./images/relaxsupport0.webp" alt="디토엔코 릴렉스룸 내부 1" style="object-position: center 65%;" loading="lazy">
+          <img src="./images/relaxsupport1.webp" alt="디토엔코 릴렉스룸 내부 2" loading="lazy">
+          <img src="./images/relaxsupport2.webp" alt="디토엔코 서포트 공간 내부 1" loading="lazy">
+          <img src="./images/relaxsupport3.webp" alt="디토엔코 서포트 공간 내부 2" loading="lazy">
+          <img src="./images/relaxsupport4.webp" alt="디토엔코 편의시설 내부" loading="lazy">
+          <img src="./images/relaxsupport0.webp" alt="" aria-hidden="true" style="object-position: center 65%;" loading="lazy">
         </div>
         <div class="space-roller-dots">
           <span class="dot active"></span>
@@ -1494,7 +1494,7 @@
     </div>
     <div class="col-span-6" style="padding-right: 32px; padding-top: 0;">
       <div style="width: 100%; height: 100%; overflow: hidden;">
-        <img alt="디토엔코 라운지 내부 — 스터디카페 시장 성장 배경" style="width: 100%; height: 100%; object-fit: cover; display: block;" src="./images/lobby1.webp"/>
+        <img alt="디토엔코 라운지 내부 — 스터디카페 시장 성장 배경" style="width: 100%; height: 100%; object-fit: cover; display: block;" src="./images/lobby1.webp" loading="lazy"/>
       </div>
     </div>
   </div>
@@ -1671,7 +1671,7 @@
 
     <!-- 사진: 1열 2-3행 (row-span 2) -->
     <div class="process-img-wrap process-photo" style="grid-column: 1; grid-row: 2 / 4; overflow: hidden; position: relative;">
-      <img src="./images/process.webp" alt="디토엔코 프랜차이즈 창업 프로세스 안내" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+      <img src="./images/process.webp" alt="디토엔코 프랜차이즈 창업 프로세스 안내" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" loading="lazy">
       <div class="process-img-overlay"></div>
       <div class="process-img-text">Are You In?</div>
     </div>
@@ -1723,7 +1723,7 @@
 <div class="form-inner">
       <div>
         <div style="display:inline-block; width:fit-content;">
-          <img src="./images/logo.png" alt="DITTO'ENCO" style="width:100%; display:block;">
+          <img src="./images/logo.png" alt="DITTO'ENCO" style="width:100%; display:block;" loading="lazy">
         </div>
       </div>
       <!-- 가운데: 에디토리얼 텍스트 -->
