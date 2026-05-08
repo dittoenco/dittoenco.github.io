@@ -766,7 +766,8 @@
       background: rgba(255,255,255,0.5);
       border-radius: 8px;
     }
-    .about-stat:nth-child(2n) {
+    /* PC의 .about-stat + .about-stat 규칙(padding-left:0) 무력화 */
+    .about-stat + .about-stat {
       padding: 12px 10px;
       border-left: none;
     }
