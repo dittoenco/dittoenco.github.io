@@ -1050,6 +1050,18 @@
     .startup-emp { display: contents !important; }
     .startup-sec br { display: none !important; }
 
+    /* contents로 부모 박스가 사라지면서 .startup-left의 z-index:1을 잃어
+       다크 오버레이(z-index:0)에 가려지므로 평탄화된 자식들에 직접 부여 */
+    .startup-label-block,
+    .startup-title-main,
+    .startup-emp-1,
+    .startup-emp-2,
+    .startup-body,
+    .startup-badges {
+      position: relative !important;
+      z-index: 1 !important;
+    }
+
     /* 우측 표 컬럼: 일반 block으로 풀고 padding 정리 */
     .startup-right {
       display: block !important;
