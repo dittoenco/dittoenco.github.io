@@ -884,8 +884,17 @@
       margin-top: 2px;
     }
 
-    /* Our Space 헤더 — About Us 톤과 통일 (좌측 정렬 + 오렌지 짧은 가로 구분선) */
-    .roomview-header { grid-template-columns: 1fr; gap: 0; }
+    /* Our Space 헤더 — 모바일 세로 흐름 (타이틀 → 구분선 → 본문 풀폭) */
+    .roomview-header {
+      display: block !important;
+      padding: var(--py) var(--px) !important;
+      gap: 0;
+    }
+    .roomview-title {
+      font-size: clamp(24px, 7vw, 28px) !important;
+      white-space: nowrap;
+      margin: 0;
+    }
     .roomview-title::after {
       content: '';
       display: block;
@@ -894,8 +903,17 @@
       background: #F47B20;
       margin: 14px 0 24px 0;
     }
-    .roomview-desc { padding-top: 0; gap: 10px; }
-    .roomview-desc p { font-size: 13px; line-height: 1.65; }
+    .roomview-desc {
+      padding-top: 0;
+      gap: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    .roomview-desc p {
+      font-size: 12px;
+      line-height: 1.7;
+      margin: 0;
+    }
 
     /* 공간 소개 — 4개 카드 적층 (캐러셀 상단 + 텍스트 하단) */
     .space-sec-header { flex-direction: column; align-items: flex-start; gap: 16px; }
