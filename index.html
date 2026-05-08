@@ -944,14 +944,95 @@
     .twocol-left { min-height: 260px; }
     .twocol-right { padding: 40px var(--px); }
 
-    /* Market Insight */
-    .market-main { padding: var(--py) var(--px) !important; }
-    .market-main .grid { display: flex !important; flex-direction: column; gap: 28px; }
-    .market-main .col-span-6 { width: 100% !important; }
-    .market-main .col-span-6 > div[style*="height: 100%"] { height: 240px !important; }
-    .market-main .grid-cols-3 { display: grid !important; grid-template-columns: 1fr !important; }
-    .market-main .grid-cols-3 > div { padding: 24px var(--px) !important; border: none !important; border-top: 1px solid #e3bfb2 !important; }
-    .market-main .text-7xl { font-size: 2.5rem !important; }
+    /* Why Now / Market Insight — 모바일 재정렬
+       (label → title → 본문 → 이미지 → 강조 → 수치 → 마지막 본문) */
+    .market-main {
+      padding: var(--py) var(--px) !important;
+      padding-left: var(--px) !important;
+      padding-top: var(--py) !important;
+    }
+    /* 상단 grid-cols-12와 col-span-6에 display:contents를 걸어
+       내부 요소들을 .market-main(flex column) 직속으로 끌어올림 → order로 재정렬 */
+    .market-main > .grid.grid-cols-12 { display: contents !important; }
+    .market-main .col-span-6 { display: contents !important; }
+
+    /* 이미지 박스 — col-span-6의 안쪽 div */
+    .why-image-block {
+      display: block !important;
+      width: 100% !important;
+      height: 220px !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      margin: 0 0 24px 0 !important;
+    }
+
+    /* order: 사용자 요구 순서 */
+    .why-label { order: 1; margin-bottom: 8px !important; }
+    .why-title { order: 2; }
+    .why-body-1 { order: 3; }
+    .why-body-2 { order: 4; }
+    .why-image-block { order: 5; }
+    .why-emphasis { order: 6; }
+    .why-metrics { order: 7; }
+    .why-body-3 { order: 8; }
+
+    /* 타이틀 + 짧은 오렌지 가로 구분선 (About Us 톤 통일) */
+    .why-title {
+      font-size: clamp(36px, 9vw, 56px) !important;
+      margin: 0 !important;
+    }
+    .why-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: #F47B20;
+      margin: 14px 0 24px 0;
+    }
+
+    /* 본문 — 좌측 정렬, justify 해제, 모바일 사이즈, 단락 간 적절한 여백 */
+    .why-body {
+      font-size: 13px !important;
+      line-height: 1.7 !important;
+      max-width: none !important;
+      text-align: left !important;
+      margin: 0 0 16px 0 !important;
+    }
+    .why-emphasis {
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+      margin: 4px 0 20px 0 !important;
+    }
+    .why-body-3 {
+      margin: 20px 0 0 0 !important;
+    }
+
+    /* 수치 3박스 — About Us 카드 톤 (가로 3분할) */
+    .why-metrics {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 8px !important;
+      margin: 16px 0 0 0 !important;
+      border: none !important;
+    }
+    .why-metrics > div {
+      background: rgba(255, 255, 255, 0.5) !important;
+      border-radius: 8px !important;
+      padding: 12px 8px !important;
+      border: none !important;
+      margin: 0 !important;
+    }
+    .why-metrics .text-7xl {
+      font-size: 20px !important;
+      line-height: 1.2 !important;
+    }
+    .why-metrics .text-xs {
+      font-size: 9px !important;
+      letter-spacing: 0.05em !important;
+      line-height: 1.4 !important;
+    }
+    /* 카드 하단 짧은 가로선은 모바일에서 숨김 */
+    .why-metrics .w-12 { display: none !important; }
     .market-main .mt-auto { margin-top: 0 !important; }
 
     /* Startup Cost */
@@ -1673,25 +1754,31 @@
   <!-- Top Editorial Content Layer -->
   <div class="grid grid-cols-12 gap-12 relative z-10" style="align-items: stretch;">
     <div class="col-span-6">
-      <span class="font-label text-xs uppercase tracking-[0.3em] text-primary mb-6 block">Market Insight</span>
-      <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(48px, 7vw, 96px); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; color: #444;" class="mb-8">
+      <span class="font-label text-xs uppercase tracking-[0.3em] text-primary mb-6 block why-label">Market Insight</span>
+      <h2 class="mb-8 why-title" style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(48px, 7vw, 96px); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; color: #444;">
         Why Now
       </h2>
-      <p class="font-body text-on-surface-variant leading-relaxed max-w-[600px]" style="font-family: 'Pretendard', sans-serif; font-size: clamp(16px, 1.5vw, 20px); color: #444; line-height: 1.85; font-weight: 400; text-align: justify; word-break: keep-all;">
-        AI의 발전과 1인 워커의 급증으로 스터디카페와 공유 오피스의 경계는 이미 허물어지고 있습니다. <span style="font-weight: 900;">전체 이용자의 70~80%가 성인</span>임에도, 여전히 과거의 타깃에 얽매여 <span style="font-weight: 900;">학사 일정에 좌지우지되는 낡은 시장 모델이 폐업률 20%의 정체</span>일지도 모르겠습니다.<br><br>
-        대안이 없어 막연히 유명 브랜드를 찾기도 하지만, <span style="font-weight: 900;">과연 스터디카페를 '간판'의 이름값만으로 찾아오는 고객이 얼마나 될까요? 결국 고객은 브랜드가 아닌 몰입할 수 있는 이 공간의 쾌적함과 정서를 소비</span>합니다.<br><br>
-        <span style="font-weight: 900; color: #F47B20;">공간의 명품화는 브랜드가 정의하지 않습니다. 그곳을 찾는 고객의 정서가 모여 비로소 정의됩니다.</span><br><br>
+      <p class="font-body text-on-surface-variant leading-relaxed max-w-[600px] why-body why-body-1" style="font-family: 'Pretendard', sans-serif; font-size: clamp(16px, 1.5vw, 20px); color: #444; line-height: 1.85; font-weight: 400; text-align: justify; word-break: keep-all; margin: 0 0 1.85em 0;">
+        AI의 발전과 1인 워커의 급증으로 스터디카페와 공유 오피스의 경계는 이미 허물어지고 있습니다. <span style="font-weight: 900;">전체 이용자의 70~80%가 성인</span>임에도, 여전히 과거의 타깃에 얽매여 <span style="font-weight: 900;">학사 일정에 좌지우지되는 낡은 시장 모델이 폐업률 20%의 정체</span>일지도 모르겠습니다.
+      </p>
+      <p class="font-body text-on-surface-variant leading-relaxed max-w-[600px] why-body why-body-2" style="font-family: 'Pretendard', sans-serif; font-size: clamp(16px, 1.5vw, 20px); color: #444; line-height: 1.85; font-weight: 400; text-align: justify; word-break: keep-all; margin: 0 0 1.85em 0;">
+        대안이 없어 막연히 유명 브랜드를 찾기도 하지만, <span style="font-weight: 900;">과연 스터디카페를 '간판'의 이름값만으로 찾아오는 고객이 얼마나 될까요? 결국 고객은 브랜드가 아닌 몰입할 수 있는 이 공간의 쾌적함과 정서를 소비</span>합니다.
+      </p>
+      <p class="font-body leading-relaxed max-w-[600px] why-body why-emphasis" style="font-family: 'Pretendard', sans-serif; font-size: clamp(16px, 1.5vw, 20px); color: #F47B20; line-height: 1.85; font-weight: 900; text-align: justify; word-break: keep-all; margin: 0 0 1.85em 0;">
+        공간의 명품화는 브랜드가 정의하지 않습니다. 그곳을 찾는 고객의 정서가 모여 비로소 정의됩니다.
+      </p>
+      <p class="font-body text-on-surface-variant leading-relaxed max-w-[600px] why-body why-body-3" style="font-family: 'Pretendard', sans-serif; font-size: clamp(16px, 1.5vw, 20px); color: #444; line-height: 1.85; font-weight: 400; text-align: justify; word-break: keep-all; margin: 0;">
         디토엔코는 무의미한 창업 비용 거품을 비워내고, 1인 워커와 성인 수요를 완벽히 담아낼 이 시대에 최적화된 공간 미학을 제안하고자 합니다.
       </p>
     </div>
-    <div class="col-span-6" style="padding-right: 32px; padding-top: 0;">
-      <div style="width: 100%; height: 100%; overflow: hidden;">
+    <div class="col-span-6 why-image-col" style="padding-right: 32px; padding-top: 0;">
+      <div class="why-image-block" style="width: 100%; height: 100%; overflow: hidden;">
         <img alt="디토엔코 라운지 내부 — 스터디카페 시장 성장 배경" style="width: 100%; height: 100%; object-fit: cover; display: block;" src="./images/lobby1.webp" loading="lazy"/>
       </div>
     </div>
   </div>
   <!-- Metrics Row -->
-  <div class="grid grid-cols-3 mt-auto border-y border-outline-variant" style="margin-top: 4rem;">
+  <div class="grid grid-cols-3 mt-auto border-y border-outline-variant why-metrics" style="margin-top: 4rem;">
     <div class="bg-surface py-12 pr-12">
       <div class="flex flex-col gap-2">
         <span class="text-7xl font-headline font-bold text-primary">62x</span>
