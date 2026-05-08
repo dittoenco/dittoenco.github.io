@@ -1061,6 +1061,10 @@
     }
     .startup-sec .w-1\/2 { width: 100% !important; }
 
+    /* 모바일에서 장식 요소(오렌지 링/오렌지 가로선) 숨김 — 본문과 겹쳐 보이는 문제 해결 */
+    .startup-decor-ring,
+    .startup-decor-line { display: none !important; }
+
     /* DOM 평탄화: 좌측 컬럼 + h2 + emphasis span을 모두 contents로 풀어
        라벨/타이틀/강조1/강조2/본문/표/배지를 .startup-sec 직속 flex item으로 승격 */
     .startup-left { display: contents !important; }
@@ -2089,8 +2093,8 @@
 <section class="startup-sec relative w-full mx-auto overflow-hidden flex items-stretch px-24 py-24" style="background-image: url('./images/startup.webp'); background-size: cover; background-position: center;">
   <div class="absolute inset-0" style="background: rgba(68,68,68,0.92); z-index: 0;"></div>
   <!-- 장식 요소 -->
-  <div class="absolute top-40 right-1/4 w-32 h-32 pointer-events-none" style="border: 1px solid rgba(244,123,32,0.3); border-radius: 9999px;"></div>
-  <div class="absolute top-1/4 left-0 pointer-events-none" style="width: 64px; height: 2px; background: rgba(244,123,32,0.6);"></div>
+  <div class="absolute top-40 right-1/4 w-32 h-32 pointer-events-none startup-decor-ring" style="border: 1px solid rgba(244,123,32,0.3); border-radius: 9999px;"></div>
+  <div class="absolute top-1/4 left-0 pointer-events-none startup-decor-line" style="width: 64px; height: 2px; background: rgba(244,123,32,0.6);"></div>
 
   <!-- 왼쪽 텍스트 -->
   <div class="w-1/2 flex flex-col justify-center startup-left" style="position: relative; z-index: 1;">
