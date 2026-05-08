@@ -884,15 +884,60 @@
       margin-top: 2px;
     }
 
-    /* Room View 헤더 */
-    .roomview-header { grid-template-columns: 1fr; gap: 20px; }
+    /* Our Space 헤더 — About Us 톤과 통일 (좌측 정렬 + 오렌지 짧은 가로 구분선) */
+    .roomview-header { grid-template-columns: 1fr; gap: 0; }
+    .roomview-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: #F47B20;
+      margin: 14px 0 24px 0;
+    }
+    .roomview-desc { padding-top: 0; gap: 10px; }
+    .roomview-desc p { font-size: 13px; line-height: 1.65; }
 
-    /* 공간 소개 */
+    /* 공간 소개 — 4개 카드 적층 (캐러셀 상단 + 텍스트 하단) */
     .space-sec-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .space-sec-body { grid-template-columns: 1fr; padding-bottom: 40px; }
-    .space-card-v2 { transform: none !important; align-items: flex-start; }
-    .space-card-v2-oval { width: 100%; height: 220px; border-radius: 16px; }
-    .space-card-v2-text { width: 100%; }
+    #spaces { padding: 0 var(--px); }
+    .space-sec-body {
+      display: flex !important;
+      flex-direction: column;
+      background: rgba(255,255,255,0.5);
+      border-radius: 8px;
+      padding: 0 !important;
+      margin-bottom: 16px;
+      overflow: hidden;
+      gap: 0;
+      align-items: stretch;
+    }
+    .space-sec-body:last-of-type { margin-bottom: 0; }
+    /* 짝수 세트(2, 4)는 DOM이 [card, roller] 순 → reverse로 롤러를 위로 */
+    .space-sec-body:nth-child(even) { flex-direction: column-reverse; }
+
+    .space-img-col {
+      width: 100%;
+      align-self: stretch !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+    }
+    .space-roller { height: 220px; }
+
+    /* 카드 텍스트 영역 — 좌측 정렬, 원형 이미지는 캐러셀과 중복이라 숨김 */
+    .space-card-v2 {
+      transform: none !important;
+      width: 100%;
+      align-items: flex-start !important;
+      padding: 16px;
+      box-sizing: border-box;
+      gap: 8px;
+    }
+    .space-card-v2-oval { display: none; }
+    .space-card-v2-text { width: 100%; gap: 6px; }
+    .space-card-v2-title { font-size: 15px; }
+    .space-card-v2-desc { font-size: 12px; line-height: 1.65; }
+    .space-card-v2-hr { margin: 6px 0; }
+    .space-card-v2-caption { font-size: 10px; letter-spacing: 0.04em; }
 
     /* twocol */
     .twocol-sec { grid-template-columns: 1fr; }
@@ -2137,6 +2182,27 @@
         sliderTimer = setInterval(() => tickFns.forEach(fn => fn()), 3500);
       }
     });
+  });
+
+  // 모바일 터치 스와이프 — 기존 도트 클릭을 재사용 (캐러셀 코어 로직 무수정)
+  document.querySelectorAll('.space-roller').forEach(roller => {
+    let startX = 0, startY = 0;
+    roller.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    roller.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+      const dots = roller.querySelectorAll('.dot');
+      if (!dots.length) return;
+      const cur = Math.max(0, Array.from(dots).findIndex(d => d.classList.contains('active')));
+      const nextIdx = dx < 0
+        ? (cur + 1) % dots.length
+        : (cur - 1 + dots.length) % dots.length;
+      dots[nextIdx].click();
+    }, { passive: true });
   });
 
   document.fonts.ready.then(fitHeroSub);
