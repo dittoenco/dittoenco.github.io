@@ -709,18 +709,27 @@
 
   /* ── 모바일 (768px 이하) ── */
   @media (max-width: 768px) {
-    /* NAV */
-    .nav-links { display: none; }
-    .nav-right { gap: 16px; }
-    .nav-cta { font-size: 11px; padding: 7px 14px; }
+    /* NAV — 모바일에서 헤더(로고 + 창업 상담 신청 CTA) 전체 숨김 */
+    .nav { display: none; }
 
-    /* HERO */
+    /* HERO — 텍스트와 CTA 모두 가운데 정렬 */
     .hero { height: 100svh; min-height: 500px; }
-    .hero-content { padding: 0 var(--px) 40px; }
-    .hero-kicker { font-size: 14px; }
-    .hero-h1 { margin-bottom: 20px; }
-    .hero-desc { font-size: 13px; margin-bottom: 32px; line-height: 1.7; }
-    .hero-btns { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .hero-content {
+      padding: 0 var(--px) 40px;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-kicker { font-size: 14px; justify-content: center; }
+    .hero-h1 { margin-bottom: 20px; align-items: center; }
+    .hero-desc {
+      font-size: 13px; margin-bottom: 32px; line-height: 1.7;
+      margin-left: auto; margin-right: auto;
+    }
+    .hero-btns {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
     .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
     .hero-arrow.prev { left: 12px; }
     .hero-arrow.next { right: 12px; }
