@@ -737,9 +737,52 @@
     /* About Us */
     .about-top { grid-template-columns: 1fr; gap: 24px; padding-bottom: 36px; }
     .about-desc p:first-child::before { display: none; }
-    .about-stats { grid-template-columns: repeat(2, 1fr); gap: 0; }
-    .about-stat { padding-right: 16px; padding-bottom: 24px; }
-    .about-stat:nth-child(2n) { padding-left: 16px; border-left: 1px solid rgba(44,36,22,0.12); }
+
+    /* 오렌지 카피 두 줄 분리 */
+    .about-tagline-sep { display: none; }
+    .about-tagline-en, .about-tagline-ko { display: block; }
+    .about-tagline-ko::before { content: "— "; }
+
+    /* 회색 본문 어색한 줄바꿈 제거 (자연스러운 흐름) */
+    .about-desc p br { display: none; }
+
+    /* 통계 4박스 카드형 (2x2 그리드) */
+    .about-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      column-gap: 8px;
+    }
+    .about-stat {
+      padding: 12px 10px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 8px;
+    }
+    .about-stat:nth-child(2n) {
+      padding: 12px 10px;
+      border-left: none;
+    }
+    .astat-line { display: none; }
+    .astat-label {
+      font-size: 10px;
+      color: #888;
+      font-weight: 600;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+    }
+    .astat-label-pc { display: none; }
+    .astat-label-mobile { display: inline !important; }
+    .astat-value { gap: 4px; }
+    .astat-num {
+      font-size: 17px;
+      font-weight: 500;
+      color: #2a2a2a;
+    }
+    .astat-unit {
+      font-size: 10px;
+      color: #888;
+    }
+    .astat-unit-pc { display: none; }
+    .astat-unit-mobile { display: inline !important; }
 
     /* Core Values */
     .corevalues-sec { grid-template-columns: 1fr; clip-path: none; margin: 0; }
@@ -1195,7 +1238,7 @@
   <div class="about-top">
     <h2 class="about-title">About Us</h2>
     <div class="about-desc">
-      <p style="font-weight: 700; color: #F47B20;">Better by Less - 비움으로써 완성되는 공간의 철학</p>
+      <p style="font-weight: 700; color: #F47B20;"><span class="about-tagline-en">Better by Less</span><span class="about-tagline-sep"> - </span><span class="about-tagline-ko">비움으로써 완성되는 공간의 철학</span></p>
       <p style="font-weight: 400;">채울수록 무거워지는 공간이 아닌,<br>비울수록 깊어지는 공간을 생각했습니다.</p>
       <p style="font-weight: 700;">그 자리에는 오직 두 가지만을 남겼습니다.<br>온전한 몰입, 그리고 창업자를 위한 가벼운 시작.</p>
       <p class="about-closing">비움으로써 채워지는 가치, 그것이 디토엔코의 방식이자 존재 이유입니다.</p>
@@ -1207,11 +1250,11 @@
       <div class="astat-line"></div>
       <div class="astat-value">
         <span class="astat-num" data-target="2025" data-duration="1200" data-start="2015">0</span>
-        <span class="astat-unit">11월</span>
+        <span class="astat-unit"><span class="astat-unit-pc">11월</span><span class="astat-unit-mobile" style="display:none;">.11</span></span>
       </div>
     </div>
     <div class="about-stat">
-      <div class="astat-label">평균 좌석 점유율</div>
+      <div class="astat-label"><span class="astat-label-pc">평균 좌석 점유율</span><span class="astat-label-mobile" style="display:none;">좌석 점유율</span></div>
       <div class="astat-line"></div>
       <div class="astat-value">
         <span class="astat-num" data-target="55" data-duration="1400">0</span>
