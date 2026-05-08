@@ -736,6 +736,9 @@
 
     /* About Us */
     .about-top { grid-template-columns: 1fr; gap: 24px; padding-bottom: 36px; }
+
+    /* 본문 좌측 들여쓰기 제거 (타이틀/통계와 동일 끝선) */
+    .about-desc { padding-left: 0; max-width: none; }
     .about-desc p:first-child::before { display: none; }
 
     /* 오렌지 카피 두 줄 분리 */
@@ -743,8 +746,14 @@
     .about-tagline-en, .about-tagline-ko { display: block; }
     .about-tagline-ko::before { content: "— "; }
 
-    /* 회색 본문 어색한 줄바꿈 제거 (자연스러운 흐름) */
+    /* 본문 의미 단위 줄바꿈 (span 기반) — PC용 br는 모바일에서 숨김 */
+    .about-desc .about-line { display: block; }
     .about-desc p br { display: none; }
+
+    /* 단락 간격 — 3그룹 분리 (tagline / body / closing) */
+    .about-desc p.about-p-tagline { margin: 0 0 20px 0; }
+    .about-desc p.about-p-body { margin: 0; }
+    .about-desc p.about-closing { margin: 20px 0 0 0; }
 
     /* 통계 4박스 카드형 (2x2 그리드) */
     .about-stats {
@@ -1238,10 +1247,10 @@
   <div class="about-top">
     <h2 class="about-title">About Us</h2>
     <div class="about-desc">
-      <p style="font-weight: 700; color: #F47B20;"><span class="about-tagline-en">Better by Less</span><span class="about-tagline-sep"> - </span><span class="about-tagline-ko">비움으로써 완성되는 공간의 철학</span></p>
-      <p style="font-weight: 400;">채울수록 무거워지는 공간이 아닌,<br>비울수록 깊어지는 공간을 생각했습니다.</p>
-      <p style="font-weight: 700;">그 자리에는 오직 두 가지만을 남겼습니다.<br>온전한 몰입, 그리고 창업자를 위한 가벼운 시작.</p>
-      <p class="about-closing">비움으로써 채워지는 가치, 그것이 디토엔코의 방식이자 존재 이유입니다.</p>
+      <p class="about-p-tagline" style="font-weight: 700; color: #F47B20;"><span class="about-tagline-en">Better by Less</span><span class="about-tagline-sep"> - </span><span class="about-tagline-ko">비움으로써 완성되는 공간의 철학</span></p>
+      <p class="about-p-body" style="font-weight: 400;"><span class="about-line">채울수록 무거워지는 공간이 아닌,</span><br><span class="about-line">비울수록 깊어지는 공간을 생각했습니다.</span></p>
+      <p class="about-p-body" style="font-weight: 700;"><span class="about-line">그 자리에는 오직 두 가지만을 남겼습니다.</span><br><span class="about-line">온전한 몰입, 그리고 창업자를 위한 가벼운 시작.</span></p>
+      <p class="about-closing"><span class="about-line">비움으로써 채워지는 가치,</span> <span class="about-line">그것이 디토엔코의 방식이자 존재 이유입니다.</span></p>
     </div>
   </div>
   <div class="about-stats">
